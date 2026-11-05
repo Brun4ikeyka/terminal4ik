@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ru" class="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BESPALIKOV // EXORCISM™ & SCALE TERMINAL</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;800&family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* БАЗОВЫЙ СБРОС И ЖЕСТКИЙ ТЕМНЫЙ ФОН STEAM / SPACE */
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+    html, body {
+      background-color: #070a10 !important;
+      color: #e2e8f0 !important;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+      line-height: 1.5;
+    }
+    .mono {
+      font-family: 'JetBrains Mono', monospace;
+    }
+    #cosmos-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .content-wrapper {
+      position: relative;
+      z-index: 10;
+    }
+    .glass-panel {
+      background: rgba(13, 18, 28, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 8px;
+      color: #e2e8f0;
+    }
+    /* КАРТОЧКИ ХОББИ-УБИЙЦ С ХОВЕРОМ */
+    .hobby-btn {
+      background: rgba(15, 23, 38, 0.9);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+      border-radius: 6px;
+      padding: 14px;
+      text-align: left;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 8px;
+      color: #f1f5f9;
+    }
+    .hobby-btn:hover {
+      border-color: #38bdf8;
+      background: rgba(22, 34, 56, 0.98);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(56, 189, 248, 0.15);
+    }
+    /* КАРТОЧКИ ТАРИФОВ */
+    .tier-card {
+      background: rgba(13, 18, 28, 0.88);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      transition: all 0.25s ease;
+      color: #e2e8f0;
+    }
+    .tier-card:hover {
+      border-color: rgba(255, 255, 255, 0.35);
+      transform: translateY(-2px);
+    }
+    .tier-card.active {
+      border: 2px solid #38bdf8;
+      background: rgba(17, 27, 46, 0.96);
+      box-shadow: 0 0 30px rgba(56, 189, 248, 0.18);
+    }
+    /* КАРТОЧКИ СКРИНШОТОВ */
+    .screenshot-card {
+      background: #0d131f;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: zoom-in;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+    .screenshot-card:hover {
+      transform: translateY(-2px);
+      border-color: #38bdf8;
+    }
+    /* СКРОЛЛБАР ДЛЯ МОДАЛОК */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #070a10;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #1e293b;
+      border-radius: 3px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #38bdf8;
+    }
+  </style>
+</head>
+<body class="min-h-screen selection:bg-sky-400 selection:text-black">
+
+  <!-- ФОНОВЫЙ КОСМОС И СОЗВЕЗДИЯ -->
+  <canvas id="cosmos-canvas"></canvas>
+
+  <div class="content-wrapper">
+    <!-- ВЕРХНЯЯ ПАНЕЛЬ СТАТУСА -->
+    <header class="border-b border-white/10 bg-[#070a10]/90 backdrop-blur sticky top-0 z-40">
+      <div class="max-w-4xl mx-auto px-4 py-3 flex justify-between items-center text-[11px] md:text-xs mono text-slate-400">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-sky-400 animate-ping"></span>
+          <span class="text-white font-bold">BESPALIKOV // EXORCISM™ TERMINAL</span>
+        </div>
+        <div>LOC: TARRAGONA, ES // MODEL: FIX + 10% DELTA</div>
+      </div>
+    </header>
+
+    <main class="max-w-4xl mx-auto px-4 py-10 md:py-14 space-y-14">
+
+      <!-- HERO SECTION -->
+      <section class="space-y-5">
+        <div class="inline-block border border-sky-500/30 bg-sky-950/40 px-3 py-1 text-xs mono text-sky-300 uppercase tracking-widest rounded">
+          Executive Performance & Operational Restructuring (EXORCISM™)
+        </div>
+        <h1 class="text-3xl sm:text-5xl md:text-6xl font-black tracking-tight leading-none text-white uppercase">
+          ВЫТАЩИТЬ БИЗНЕС ИЗ БОЛОТА В <span class="bg-sky-400 text-black px-2">Х2–Х5</span> ЗА 90 ДНЕЙ.
+        </h1>
+        <p class="text-base md:text-xl text-slate-300 max-w-3xl leading-relaxed">
+          Для микробизнеса — жесткий спринт до <strong class="text-white">$10,000/мес под камерами</strong>. Для взрослого бизнеса — возврат сна, фокуса и кратный пробой потолка в режиме полной секретности.
+          <span class="text-white font-semibold block mt-2">Не хочешь денег — закрывай вкладку, тебе никакой экзорцизм не поможет.</span>
+        </p>
+      </section>
+
+      <!-- 01. ONLYFANS BENCHMARK -->
+      <section class="glass-panel p-6 md:p-8 space-y-4">
+        <div class="text-xs mono text-sky-400 uppercase font-bold">// 01. ПОЧЕМУ ТЫ ДО СИХ ПОР НИЖЕ СВОЕГО МАСШТАБА?</div>
+        <p class="text-slate-200 leading-relaxed text-sm md:text-base">
+          Раньше я продюсировал моделей на OnlyFans. Правило конвейера простое: если девочка без опыта не козлит — за 3 месяца она пробивает <strong class="text-white">$10,000 чистыми</strong>. Если начинает ныть и искать отмазки — улетает в дроп.
+        </p>
+        <p class="text-slate-200 leading-relaxed text-sm md:text-base">
+          Взрослого фаундера с продуктом и базовой логикой провести через кратный рост в разы проще. Твой бизнес буксует не из-за рынка. Он стоит, потому что ты заражен вирусом <strong class="text-white">малодушия</strong>: кормишь нахлебников, которые кладут ноги на стол, сливаешь фокус и слушаешь штат дорогих «внутренних адвокатов», которые всей толпой жалеют тебя.
+        </p>
+      </section>
+
+      <!-- 02. БЭКГРАУНД И СТАТИСТИКА 7 ИЗ 11 -->
+      <section class="space-y-4">
+        <div class="text-xs mono text-sky-400 uppercase font-bold">// 02. БЭКГРАУНД ОПЕРАТОРА И ПОЛЕВАЯ СТАТИСТИКА</div>
+        <div class="grid md:grid-cols-3 gap-4">
+          <div class="glass-panel p-5 space-y-2">
+            <div class="mono text-sm font-bold text-white">[01] ПОДВАЛ ХРАМА</div>
+            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+              В марте 26-го вышел из храма Кришны, где с 2 ночи драил котлы и туалеты в подвале. Первую предоплату за экзорцизм словил на телефон, выйдя из подвала с ершиком в руках поймать сеть.
+            </p>
+          </div>
+          <div class="glass-panel p-5 space-y-2 border-sky-500/40">
+            <div class="mono text-sm font-bold text-sky-400">[02] АРМЕЙКА: 7 ИЗ 11 ВЫШЛИ</div>
+            <p class="text-xs md:text-sm text-slate-200 leading-relaxed">
+              В апреле паканули в армейку. Из <strong class="text-white">11 человек</strong>, с которыми я там плотно взаимодействовал и провел сессии, <strong class="text-white">6 покинули армию, я вышел 7-м</strong>, а двое осознанно решили служить дальше. Первым на выход пошел самый хромой после публичного экзорцизма.
+            </p>
+          </div>
+          <div class="glass-panel p-5 space-y-2">
+            <div class="mono text-sm font-bold text-white">[03] ДОПРОС ЗА 20 МИНУТ</div>
+            <p class="text-xs md:text-sm text-slate-300 leading-relaxed">
+              Никакой психотерапии на 5 лет. По телефону за 20 минут вытаскиваю на допрос ту сущность (баг/программу) в твоей башке, которая жрет твой ресурс. Она сама твоим же ртом выписывает тебе протокол действий — и тебя попускает.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03. ДИАГНОСТИКА САМОВРЕДИТЕЛЬСТВА (ИНТЕРАКТИВНАЯ ВИКИПЕДИЯ ПО КЛИКУ) -->
+      <section class="glass-panel p-6 md:p-8 space-y-5">
+        <div class="space-y-1">
+          <div class="text-xs mono text-sky-400 uppercase font-bold">// 03. ДИАГНОСТИКА САМОВРЕДИТЕЛЬСТВА (НАЖМИ НА ЛЮБОЙ ПУНКТ)</div>
+          <h3 class="text-lg md:text-xl font-bold text-white">Куда ты сейчас сливаешь свой бизнес и жизнь? (9 мужских хобби-убийц):</h3>
+          <p class="text-xs text-slate-400">Тапни на любую карточку ниже, чтобы открыть полное досье механизма слива (закрывается тапом в любое место вне окна).</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-3 mono text-xs">
+          <button onclick="openWiki('religion')" class="hobby-btn border-sky-400/50">
+            <span class="font-bold text-white text-sm">1. Религия (откуп грехов)</span>
+            <span class="text-[10px] text-sky-400 uppercase flex items-center justify-between">
+              <span>[ ПОЛНАЯ СТАТЬЯ // ЧИТАТЬ ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('esoteric')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">2. Шизотерика (Таро/Бали)</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('drugs')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">3. Наркотики и стимуляторы</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('alcohol')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">4. Ночной алкоголизм</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('extreme')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">5. Экстрим на грани фола</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('ironman')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">6. Спорт на убой (Ironman)</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('philosophy')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">7. Пустая философия</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('sex')" class="hobby-btn">
+            <span class="font-bold text-white text-sm">8. Секс-эксперименты / слив</span>
+            <span class="text-[10px] text-slate-400 uppercase flex items-center justify-between">
+              <span>[ ОТКРЫТЬ РАЗБОР ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+
+          <button onclick="openWiki('house')" class="hobby-btn sm:col-span-2 md:col-span-1 border-amber-400/40">
+            <span class="font-bold text-amber-300 text-sm">9. Стройка дома (Лудомания)</span>
+            <span class="text-[10px] text-amber-400 uppercase flex items-center justify-between">
+              <span>[ РАЗБОР НЕДОСТРОЯ ]</span>
+              <span>↗</span>
+            </span>
+          </button>
+        </div>
+      </section>
+
+      <!-- 04. PRICING & TIERS -->
+      <section class="space-y-6">
+        <div class="text-xs mono text-sky-400 uppercase font-bold">// 04. ОФФЕР И ПРАЙС НА НОВУЮ ЖИЗНЬ</div>
+        <p class="text-sm text-slate-200 leading-relaxed">
+          На треках за $3k и $5k работает двухкомпонентная модель: фиксированный вход на старте + <strong class="text-white">10% десятины только с НОВЫХ денег, которые ты зарабатываешь поверх своего старого потолка.</strong> Старый доход остается при тебе.
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-4" id="tier-selector">
+          <!-- TIER 1 -->
+          <div class="tier-card p-6 cursor-pointer space-y-4" onclick="selectTier(this, 'ДЕФИБРИЛЛЯЦИЯ // ПУБЛИЧНЫЙ ПУТЬ ($3,000 + 10%)')">
+            <div class="flex justify-between items-center">
+              <span class="mono text-xs text-amber-400 font-bold">[ СТРОГО ДЛЯ ГЕРОЕВ ]</span>
+              <span class="mono text-[10px] border border-amber-400/40 text-amber-300 px-1.5 py-0.5 rounded">ПОД КАМЕРАМИ</span>
+            </div>
+            <div class="text-3xl font-black text-white mono">$3,000 <span class="text-sm font-normal text-slate-400">+ 10%</span></div>
+            <div class="text-xs font-bold uppercase text-emerald-400 mono">Микробизнес: Спринт до $10k/мес</div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Почему почти вдвое дешевле базы? Недостающие $2k ты доплачиваешь своей шкурой и публичностью. Весь твой путь из болота до десятки идет под камерами: с видеоотзывами, открытыми интервью и разбором твоих затыков на публику. Спрятаться в кусты не выйдет.
+            </p>
+          </div>
+
+          <!-- TIER 2 -->
+          <div class="tier-card active p-6 cursor-pointer space-y-4" onclick="selectTier(this, 'ЭКЗОРЦИЗМ МАСШТАБА // АНОНИМНО ($5,000 + 10%)')">
+            <div class="flex justify-between items-center">
+              <span class="mono text-xs text-black bg-sky-400 px-2 py-0.5 font-bold rounded">ВЗРОСЛЫЙ БИЗНЕС</span>
+              <span class="mono text-[10px] border border-sky-400/40 text-sky-300 px-1.5 py-0.5 rounded">100% NDA</span>
+            </div>
+            <div class="text-3xl font-black text-white mono">$5,000 <span class="text-sm font-normal text-slate-400">+ 10%</span></div>
+            <div class="text-xs font-bold uppercase text-emerald-400 mono">Трек: х2–х5 в полной тишине</div>
+            <p class="text-xs text-slate-200 leading-relaxed">
+              Анонимный вход для тех, у кого есть оборот (кейсы по цеху с $200k до $700k) и кому «Интерпол в окна по ночам заглядывает». Эту пятерку ты отобьешь в первую же неделю просто за счет того, что мы уволим чмошников со своей шеи.
+            </p>
+          </div>
+
+          <!-- TIER 3 -->
+          <div class="tier-card p-6 cursor-pointer space-y-4" onclick="selectTier(this, 'ЛИЧНЫЙ РЕТРИТ В ИСПАНИИ ($10,000 // БЕЗ ДЕСЯТИНЫ)')">
+            <div class="flex justify-between items-center">
+              <span class="mono text-xs text-purple-400 font-bold">ВОЛОНТЕРСТВО // VIP</span>
+              <span class="mono text-[10px] border border-purple-400/40 text-purple-300 px-1.5 py-0.5 rounded">ЖЕСТКИЙ ОТБОР</span>
+            </div>
+            <div class="text-3xl font-black text-white mono">$10,000 <span class="text-sm font-normal text-slate-400">КОСТ</span></div>
+            <div class="text-xs font-bold uppercase text-emerald-400 mono">Таррагона: Смыслы и Инструкции</div>
+            <p class="text-xs text-slate-300 leading-relaxed">
+              Я не зарабатываю с этого трека: все $10k уходят строго на организацию опыта в Испании (трансферы, повара, локации). Пересобираем физиологию и смыслы, избавляем от страхов смерти, одиночества, тюрьмы и потери рассудка. Десятины нет — благодарность строго по желанию.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05. ДОКАЗУХА И ЖИВЫЕ СКРИНЫ -->
+      <section class="space-y-4">
+        <div>
+          <div class="text-xs mono text-sky-400 uppercase font-bold">// 05. ЖИВЫЕ СКРИНЫ ИЗ ЛИЧКИ (КЛИКНИ ДЛЯ УВЕЛИЧЕНИЯ)</div>
+          <p class="text-xs text-slate-400 mt-1">От кривых заходов и квестов «как отправить крипту» до рукопожатий с топами рынка за одну неделю.</p>
+        </div>
+
+        <div class="grid md:grid-cols-2 gap-4">
+          <!-- КАРТОЧКА 1 -->
+          <div class="screenshot-card p-4 space-y-3" onclick="openImageModal('screen1.png')">
+            <div class="mono text-xs text-amber-400 font-bold">01 // ЗАПРОС НА СУБЪЕКТНОСТЬ (ФИЗТЕХ, 1/4 ЯРДА)</div>
+            <img src="screen1.png" alt="Физтех запрос на субъектность" class="w-full rounded border border-white/10" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div style="display:none" class="text-xs text-slate-300 mono p-3 bg-black/40 rounded border border-white/5">
+              «Бля бро, ну мне НАДО нарастить субъектность, не ссать принимать решения, а не быть ебучим мулом... сейчас начал менеджерить 10 дсеров/разрабов, напродавал на сотку лямов вне корпы, насорсил на четверть ярда. Закончил физтех. Но тяжело без плети и указки...» (Загрузи файл screen1.png в репозиторий для показа оригинала скрина)
+            </div>
+          </div>
+
+          <!-- КАРТОЧКА 2 -->
+          <div class="screenshot-card p-4 space-y-3" onclick="openImageModal('screen4.png')">
+            <div class="mono text-xs text-emerald-400 font-bold">02 // ЗА 1 НЕДЕЛЮ: ЭРНСТ, МАКАН, БЕРИ ЗАРЯД</div>
+            <img src="screen4.png" alt="Рукопожатия Эрнст Макан Бери Заряд" class="w-full rounded border border-white/10" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div style="display:none" class="text-xs text-slate-300 mono p-3 bg-black/40 rounded border border-white/5">
+              «Боже блять. Брат. Ты понимаешь что ты сделал? Ты дал мне возможность за одну неделю постоять и пожать руки самым выдающимся Созидателям России: Эрнсту, Андрею Макану, Кириллу Кулакову (Бери Заряд)!» (Загрузи screen4.png в репозиторий)
+            </div>
+          </div>
+
+          <!-- КАРТОЧКА 3 -->
+          <div class="screenshot-card p-4 space-y-3" onclick="openImageModal('screen2.png')">
+            <div class="mono text-xs text-sky-400 font-bold">03 // КВЕСТ «КАК ПЕРЕВЕСТИ КРИПТУ» (ТЕСТ НА $10)</div>
+            <img src="screen2.png" alt="Тест 10 баксов крипта" class="w-full rounded border border-white/10" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div style="display:none" class="text-xs text-slate-300 mono p-3 bg-black/40 rounded border border-white/5">
+              «Действительно. Уникальная нахуй услуга. Кину тебе 10 Баксов сам чтобы мы затестились. Как только придут отпишешься и сразу скину остальное. В этих переводах прям реально - Профан» / «Я пока узнаю у братанов, кто мне может без мозгоебства отправить тебе денег через крипту» (Загрузи screen2.png и screen3.png)
+            </div>
+            <img src="screen3.png" alt="Крипта через братанов" class="w-full rounded border border-white/10 mt-2" onclick="event.stopPropagation(); openImageModal('screen3.png')" onerror="this.style.display='none'">
+          </div>
+
+          <!-- КАРТОЧКА 4 -->
+          <div class="screenshot-card p-4 space-y-3" onclick="openImageModal('screen5.png')">
+            <div class="mono text-xs text-purple-400 font-bold">04 // «Я ПЕРЕВЕДУ ТЕБЕ ВСЕ ДЕНЬГИ МИРА»</div>
+            <img src="screen5.png" alt="Спасибо что абхуесосил всю жизнь" class="w-full rounded border border-white/10" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'">
+            <div style="display:none" class="text-xs text-slate-300 mono p-3 bg-black/40 rounded border border-white/5">
+              «Я тебя люблю Саша. СПАСИБО что ты абхуесосил всю мою жизнь тогда. Ты выбрал идеальную Цель. Я переведу тебе сука все деньги мира, и от всех людей! Будь всегда в ресурсе!» (Загрузи screen5.png в репозиторий)
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06. ЮРИДИЧЕСКАЯ БРОНЯ -->
+      <section class="glass-panel p-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <div>
+          <div class="text-xs mono text-sky-400 uppercase font-bold">// 06. ЮРИДИЧЕСКАЯ БРОНЯ И ГАРАНТИИ (КОНТРАКТ №1)</div>
+          <p class="text-xs text-slate-300 mt-1">Работаем по договору с фиксацией Точки А, распиской о невменяемости/фарме и двукратным откатом за крысятничество.</p>
+        </div>
+        <button onclick="openModal('contract-modal')" class="mono text-xs border border-sky-400 bg-sky-950/50 px-4 py-2.5 text-white hover:bg-sky-400 hover:text-black font-bold transition-all whitespace-nowrap rounded">
+          [ ЧИТАТЬ ВЫДЕРЖКИ ИЗ ДОГОВОРА ]
+        </button>
+      </section>
+
+      <!-- 07. ПРОТОКОЛ ВХОДА -->
+      <section class="glass-panel border-sky-500/40 p-6 md:p-8 space-y-6">
+        <div class="flex flex-col md:flex-row justify-between md:items-center gap-2">
+          <div class="text-xs mono text-sky-400 uppercase font-bold">// 07. ПРОТОКОЛ ВХОДА В ЛИЧКУ</div>
+          <div id="selected-tier-badge" class="text-xs mono bg-sky-400 text-black px-2.5 py-1 font-bold inline-block rounded">
+            ВЫБРАНО: ЭКЗОРЦИЗМ МАСШТАБА // АНОНИМНО ($5,000 + 10%)
+          </div>
+        </div>
+        
+        <div class="space-y-3 text-sm" id="filter-checks">
+          <label class="flex items-start gap-3 cursor-pointer select-none">
+            <input type="checkbox" class="mt-1 accent-sky-400 check-item">
+            <span class="text-slate-200">Я осознаю ценность своей субъектности и готов заходить на выбранных условиях ($3k под камерами / $5k NDA + 10% с новой дельты / $10k ретрит в Испании).</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer select-none">
+            <input type="checkbox" class="mt-1 accent-sky-400 check-item">
+            <span class="text-slate-200">Я готов резать по живому: увольнять нахлебников, выполнять задания, озвученные на сессии, и выключить «внутреннего адвоката».</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer select-none">
+            <input type="checkbox" class="mt-1 accent-sky-400 check-item">
+            <span class="text-slate-200">Я подтверждаю Расписку (Приложение №2): не состою на учете у психиатра/нарколога и более 3 месяцев не сижу на психотропных и сильнодействующих препаратах.</span>
+          </label>
+          <label class="flex items-start gap-3 cursor-pointer select-none">
+            <input type="checkbox" class="mt-1 accent-sky-400 check-item">
+            <span class="text-slate-200">Я понимаю главное правило из онлика: не козлить. Иначе дроп без возврата, а при попытке скрыть доход — двукратный откат к исходному болоту по п. 6.1.</span>
+          </label>
+        </div>
+
+        <div class="pt-2">
+          <a id="tg-btn" href="https://t.me/alexander_bespalikov" target="_blank" class="inline-block w-full text-center py-4 px-6 mono font-bold text-xs md:text-sm uppercase tracking-wider border border-white/10 bg-slate-900/90 text-slate-500 pointer-events-none transition-all rounded">
+            [ ПОДТВЕРДИ ВСЕ 4 ПУНКТА ВЫШЕ ДЛЯ РАЗБЛОКИРОВКИ TELEGRAM ]
+          </a>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО МИНИ-ВИКИПЕДИИ (ЗАКРЫВАЕТСЯ ТАПОМ ВНЕ ОКНА) -->
+  <div id="wiki-modal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeOnBackdrop(event, 'wiki-modal')">
+    <div class="glass-panel max-w-2xl w-full p-6 md:p-8 space-y-5 max-h-[85vh] overflow-y-auto border border-sky-400/50 shadow-2xl" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-start border-b border-white/10 pb-4 gap-4 sticky top-0 bg-[#0d121c]/95 backdrop-blur py-2 z-10">
+        <div>
+          <div class="mono text-[10px] text-sky-400 uppercase" id="wiki-tag">// БАЗА ЗНАНИЙ EXORCISM™</div>
+          <h3 class="text-lg md:text-xl font-black text-white mt-0.5" id="wiki-title">Заголовок</h3>
+        </div>
+        <button onclick="closeModal('wiki-modal')" class="mono text-xs border border-white/20 px-2.5 py-1 text-slate-300 hover:bg-white hover:text-black rounded transition-all shrink-0">
+          [ X ]
+        </button>
+      </div>
+      <div id="wiki-body" class="space-y-4 text-sm md:text-base text-slate-200 leading-relaxed">
+        <!-- Контент подставляется динамически -->
+      </div>
+      <div class="pt-3 border-t border-white/10 flex justify-between items-center text-xs mono text-slate-400">
+        <span>Тапни вне окна или на кнопку, чтобы закрыть</span>
+        <button onclick="closeModal('wiki-modal')" class="bg-sky-400 text-black font-bold px-4 py-2 rounded uppercase">Понятно</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДЛЯ ПРОСМОТРА СКРИНШОТОВ -->
+  <div id="img-modal" class="hidden fixed inset-0 bg-black/90 backdrop-blur-md z-50 flex items-center justify-center p-4 cursor-zoom-out" onclick="closeModal('img-modal')">
+    <img id="img-modal-src" src="" alt="Full screenshot" class="max-w-full max-h-[90vh] rounded border border-white/20 shadow-2xl">
+  </div>
+
+  <!-- МОДАЛЬНОЕ ОКНО ДОГОВОРА (ЗАКРЫВАЕТСЯ ТАПОМ ВНЕ ОКНА) -->
+  <div id="contract-modal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-50 flex items-center justify-center p-4" onclick="closeOnBackdrop(event, 'contract-modal')">
+    <div class="glass-panel max-w-2xl w-full p-6 md:p-8 space-y-5 max-h-[85vh] overflow-y-auto mono text-xs border border-sky-500/40" onclick="event.stopPropagation()">
+      <div class="flex justify-between items-center border-b border-white/10 pb-3">
+        <span class="text-white font-bold">ВЫДЕРЖКИ ИЗ СОГЛАШЕНИЯ (ВЕРСИЯ 2026 V3)</span>
+        <button onclick="closeModal('contract-modal')" class="text-slate-400 hover:text-white">[ ЗАКРЫТЬ X ]</button>
+      </div>
+      <div class="space-y-3 text-slate-200 leading-relaxed">
+        <p><strong class="text-sky-400">П. 2.1.5 / 100% NDA vs Тариф «Герой»:</strong> На тарифах $5,000 и $10,000 действует строгая секретность (особенно для тех, кому «Интерпол в окна по ночам заглядывает»). На тарифе «Дефибрилляция» ($3,000) Клиент осознанно доплачивает разницу публичностью и дает безотзывное согласие на открытую публикацию видеоотзывов, интервью и финансовых метрик.</p>
+        <p><strong class="text-sky-400">П. 4.1 / Особенность Ретрита за $10,000:</strong> Сумма $10,000 на тарифе Опция III полностью уходит на организацию опыта в Испании (трансферы, личные повара, логистика). Обязательная 10% десятина на этом треке НЕ взимается и может быть выплачена исключительно по желанию Клиента.</p>
+        <p><strong class="text-sky-400">П. 6.1 / Защита от крысятничества:</strong> В случае решения Клиента скрыть результат его достижений с целью истребования денежных средств или уклонения от уплаты 10% Десятины, Исполнитель гарантирует, что Клиент вернется к исходному состоянию, усиленному в двукратном размере, а режим NDA автоматически снимается.</p>
+        <p><strong class="text-sky-400">П. 6.2 / Гарантия возврата:</strong> 100% возврат базового фикса, если цель Контракта №1 не достигнута при условии полного и своевременного выполнения Клиентом всех заданий.</p>
+      </div>
+      <button onclick="closeModal('contract-modal')" class="w-full py-3 bg-sky-400 text-black font-bold uppercase rounded">ПОНЯТНО, ВЕРНУТЬСЯ В ТЕРМИНАЛ</button>
+    </div>
+  </div>
+
+  <script>
+    // БАЗА ДАННЫХ МИНИ-ВИКИПЕДИИ (ВКЛЮЧАЯ ПОЛНЫЙ ТЕКСТ ПРО РЕЛИГИЮ ИЗ ФАЙЛА)
+    const wikiData = {
+      religion: {
+        tag: "// ХОББИ-УБИЙЦА #1 // ИНСТИТУЦИОНАЛЬНЫЙ ОТКУП",
+        title: "Религия: вера рабов или знание хозяев этой жизни?",
+        content: `
+          <p>Говорят, не бывает атеистов в окопах под огнем. А еще в падающем самолете, больничном коридоре и в удобном кожаном кресле, если его обладателю уже под полтос или больше. Чем старше, а значит, и ближе к смерти мы становимся, тем чаще задумываемся о том, что после нее. Христианский рай, мусульманский джаннат и языческая вальхалла кажутся наивной чепухой, но что, если на этот раз миллионы мух не ошибаются? Ведь если в бесконечной Вселенной возможно все, что можно вообразить, то и дед на облаке, подсматривающий за вами в душе, тоже возможен! Тогда почему бы не заручиться его поддержкой? Тем более что пожертвовать сотню-другую тысяч долларов на храм — по сути, пустяк, если на кону вечное блаженство, не так ли?</p>
+          <p>Протестантские агитаторы любят повторять: «Просто уверуй в господа нашего! Ведь что ты теряешь?» Миллионеры теряют самую малость, а получают спокойствие и надежду. Не самая плохая сделка.</p>
+          <p>Руководствуясь именно такой логикой, многие состоятельные люди и даже олигархи, с которыми мне довелось общаться, становились меценатами. Кто-то даже вкладывал сразу в несколько конкурирующих религиозных «компаний», не иначе взяла верх привычка диверсифицировать инвестиции. Многие затем начинают верить всерьез, обрастают личными духовниками, приятельствуют с епископами и надеются, что искренняя вера и щедрые пожертвования перекроют прегрешения бурной молодости. Было бы здорово, если бы так все и работало. Но нет. И даже набожные миллионеры в глубине их бессмертной души понимают, что все это чепуха. <strong>Потому что сама концепция веры подразумевает кидалово.</strong> Когда есть возможность убедиться, то незачем просто верить — можно знать наверняка. А без подтверждений верят только лохи. В «МММ», в предвыборные обещания политиков и в то, что Творцу не наплевать, работаете ли вы в религиозные праздники.</p>
+          <p>Менделеев говорил, что наука начинается с тех пор, как начинают измерять. И там же кончается институализированная религия. В 1988 году ученые Аризонского и Оксфордского университетов, а также Федерального политехнического института в Цюрихе независимо друг от друга определили возраст Туринской плащаницы. Это в нее, если верить церковникам, завернули тело Иисуса Христа после смерти, и именно на ней чудесным образом отпечатался его лик. Ученые использовали радиоуглеродный анализ — метод, которым человечество с 1946 года точно определяет возраст всякого ископаемого старья: от костей динозавров до фараонских аксессуаров из египетских пирамид. У всех трех групп ученых анализ показал, что Туринская плащаница была изготовлена между <strong>1260 и 1390 годами</strong>.</p>
+          <p>Католическая церковь сперва отмахивалась, мол, образец для изучения оказался заплаткой, которую как раз и сделали в это время. Но дальнейшее исследование показало: ткань та же, что и на основном полотне. На это внятного ответа у отцов церкви не нашлось — и они попросту запретили дальнейшие исследования. «Нужно просто верить!» Впрочем, для думающих людей результаты радиоуглеродного анализа не стали сюрпризом. Ведь до XIV века церковники и словом не обмолвились о существовании полотна, в которое заворачивали тело Христа, а сам он «отпечатался» с руками, сложенными на лобке. Так начали хоронить только в «темные века»: покойник должен был «прикрывать срамоту».</p>
+          <p>Да о какой правде вообще можно говорить, если Библию кромсали и переписывали аж до 1546 года! Именно тогда, на Тридентском соборе, отцы церкви наконец определились, какие книги Святого Писания и в какой редакции их устраивают, а какие — нет. Все, что не вошло в церковный канон, было объявлено апокрифами или ересью. Начался же процесс этой церковной цензуры в 360 году на Лаодикийском соборе. Вдумайтесь: почти 1200 лет духовенство, тесно связанное и зависимое от текущей власти, лепило из христианства инструмент массового оболванивания. Правителям нужно было стадо рабов — и они его получили. Притом эти рабы оказались настолько покорными, что проигнорировали даже обнаружение новых Евангелий (от Марии Магдалины в 1850-м, от Петра в 1886-м, от Фомы в 1945-м, от Иуды в 1978-м).</p>
+          <p>Значит ли все это, что никакого Творца не было, а Вселенная возникла сама по себе из очень маленького, но очень тяжелого ничего? Конечно нет. То, что детский мультфильм с говорящими животными — выдумка, еще не означает, что животных вообще не существует, правда? Вот и религиозный ширпотреб, превращенный в инструмент порабощения, еще не означает, что Бога нет. <strong>Он есть, и лучшие из людей осознают, что они дети, а не рабы Божии.</strong> Никаких грехов — только права. Никакой слепой веры — только знания, подтвержденные здесь и сейчас. Эта религия не угнетает, а возвышает человека. Делает его не рабом, а соратником и проявлением божественного в этом мире.</p>
+          <p>Секта (а каждая институализированная религия тоже секта, просто крупная) подразумевает организацию: смешные костюмы, чины, пожертвования, проповеди от людей, возомнивших о себе невесть что. В истинном знании Творца ничего этого нет, потому что все это — лишнее. Чтобы познать Бога, не нужны посредники. Проводник — да, пригодится, да и то лишь на начальном этапе.</p>
+          <p class="text-sky-400 font-bold">Так какая религия вам по душе: вера рабов или знание хозяев этой жизни?</p>
+        `
+      },
+      esoteric: {
+        tag: "// ХОББИ-УБИЙЦА #2 // МАГИЧЕСКИЙ ИНФАНТИЛИЗМ",
+        title: "Шизотерика: Таро, ретриты на Бали и перекладывание ответственности",
+        content: `
+          <p>Когда фаундеру страшно принять жесткое кадровое решение или признать, что бизнес-модель сдохла, он бежит к тарологам, астрологам, расстановщикам или улетает «дышать маткой» и пить аяуаску на Бали.</p>
+          <p>Шизотерика — это легализованный способ снять с себя Субъектность. Очень удобно сказать: «Сейчас ретроградный Меркурий / у меня закрыта денежная чакра / род проклят до седьмого колена», вместо того чтобы уволить ворующего коммерческого директора.</p>
+          <p class="text-sky-400 font-bold">Магия начинается там, где ты возвращаешь себе право действовать напрямую, без костылей и гадалок.</p>
+        `
+      },
+      drugs: {
+        tag: "// ХОББИ-УБИЙЦА #3 // КРЕДИТ У ДОФАМИНА",
+        title: "Наркотики и стимуляторы: иллюзия сверхпродуктивности",
+        content: `
+          <p>Микродозинг, аптечные стимуляторы, порошки по выходным «чтобы перезагрузить голову» — это кредит у собственной центральной нервной системы под 1000% годовых.</p>
+          <p>Сначала тебе кажется, что ты бог многозадачности, а через полгода ты не можешь без химии встать с кровати, ловишь паранойю, что за тобой следит Интерпол, и сливаешь миллионные контракты из-за убитого сна.</p>
+        `
+      },
+      alcohol: {
+        tag: "// ХОББИ-УБИЙЦА #4 // ЛЕГАЛЬНАЯ АНЕСТЕЗИЯ",
+        title: "Ночной алкоголизм: выключить голос совести",
+        content: `
+          <p>Днем ты успешный овнер, а в 23:00 открываешь бутылку «коллекционного» виски или вина, потому что иначе мозг не выключается. Ты пьешь не ради вкуса — ты глушишь внутренний конфликт между тем масштабом, который ты знаешь за собой, и тем болотом, на которое согласился из малодушия.</p>
+        `
+      },
+      extreme: {
+        tag: "// ХОББИ-УБИЙЦА #5 // СКРЫТЫЙ СУИЦИД",
+        title: "Экстрим на грани фола: русская рулетка для уставших",
+        content: `
+          <p>Когда бизнес превратился в черную дыру, а дома ждут нелюбимые люди, мужик начинает гонять 250 км/ч по встречке на байке, лезть в горы без страховки или записываться добровольцем в мясорубку.</p>
+          <p>Это не смелость. Это социально одобряемая попытка самоустраниться, чтобы больше не тащить груз обязательств, которые сам же на себя навешал.</p>
+        `
+      },
+      ironman: {
+        tag: "// ХОББИ-УБИЙЦА #6 // ПОБЕГ В МЫШЕЧНУЮ БОЛЬ",
+        title: "Спорт на убой (Ironman / Марафоны): подмена цели",
+        content: `
+          <p>Базовое кардио и прогулки дают ресурс. Но когда владелец проседающего бизнеса начинает тренироваться по 4 часа в день к триатлону Ironman, изнашивая сердце и суставы в хлам — он просто меняет сложную задачу (рост прибыли и тяжелые переговоры) на понятную механическую жвачку («пробежать 42 км»).</p>
+          <p>Медалька финишера на шее отлично маскирует кассовый разрыв в компании.</p>
+        `
+      },
+      philosophy: {
+        tag: "// ХОББИ-УБИЙЦА #7 // ИНТЕЛЛЕКТУАЛЬНЫЙ ОНАНИЗМ",
+        title: "Пустая философия и бесконечное обучение",
+        content: `
+          <p>Стоицизм из книжек, десятый диплом MBA, бесконечные подкасты и рассуждения о «высоких материях» в чатах. Пока твои «внутренние адвокаты» строят сложные философские концепции о том, почему мир несовершенен и «надо быть выше денег», более голодные и тупые конкуренты забирают твой рынок.</p>
+        `
+      },
+      sex: {
+        tag: "// ХОББИ-УБИЙЦА #8 // ДОФАМИНОВАЯ ДЫРА",
+        title: "Секс-эксперименты, эскортницы и бесконечный тиндер",
+        content: `
+          <p>Попытка доказать себе собственную альфа-состоятельность через конвейер случайных связей, милф на Pure или содержание капризных девочек. Вместо того чтобы строить реальный баланс и партнерство, ты сливаешь тонны тестостерона, времени и фокуса в черную дыру чужих истерик.</p>
+        `
+      },
+      house: {
+        tag: "// ХОББИ-УБИЙЦА #9 // ГЛАВНАЯ ЛУДОМАНИЯ БИЗНЕСМЕНА",
+        title: "Затяжная стройка дома: как остаться банкротом с коробкой в грязи",
+        content: `
+          <p>Те из вас, кто строил дом, понимают, насколько это конченая затея: нужно освоить десяток смежных профессий, чтобы контролировать прорабов, после работы полтора часа ехать по пробкам и гулять в резиновых сапогах по грязи.</p>
+          <p>Но главное — <strong>ты добровольно вынимаешь оборотные деньги и свой мозг из тела бизнеса</strong> и закапываешь их в бетон. Стройка затягивается на годы, рынок меняется, бизнесу плохеет, и в итоге ты остаешься банкротом с роскошным недостроем, в котором даже жить нельзя.</p>
+        `
+      }
+    };
+
+    function openWiki(key) {
+      const item = wikiData[key];
+      if (!item) return;
+      document.getElementById('wiki-tag').textContent = item.tag;
+      document.getElementById('wiki-title').textContent = item.title;
+      document.getElementById('wiki-body').innerHTML = item.content;
+      openModal('wiki-modal');
+    }
+
+    function openModal(id) {
+      document.getElementById(id).classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeModal(id) {
+      document.getElementById(id).classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    function closeOnBackdrop(event, id) {
+      if (event.target.id === id) {
+        closeModal(id);
+      }
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        ['wiki-modal', 'img-modal', 'contract-modal'].forEach(closeModal);
+      }
+    });
+
+    function openImageModal(src) {
+      document.getElementById('img-modal-src').src = src;
+      openModal('img-modal');
+    }
+
+    // ВЫБОР ТАРИФА И ГЕНЕРАЦИЯ ССЫЛКИ В TELEGRAM
+    let currentTier = 'ЭКЗОРЦИЗМ МАСШТАБА // АНОНИМНО ($5,000 + 10%)';
+
+    function updateTelegramLink() {
+      const btn = document.getElementById('tg-btn');
+      const message = encodeURIComponent(`Привет, Александр. Прошел терминал.\n\nВыбранный трек: ${currentTier}\nВсе 4 пункта протокола и расписку подтверждаю. Готов к 20-минутной диагностике.`);
+      btn.href = `https://t.me/alexander_bespalikov?text=${message}`;
+    }
+
+    function selectTier(el, title) {
+      document.querySelectorAll('.tier-card').forEach(c => c.classList.remove('active'));
+      el.classList.add('active');
+      currentTier = title;
+      document.getElementById('selected-tier-badge').textContent = 'ВЫБРАНО: ' + title;
+      updateTelegramLink();
+    }
+
+    const checks = document.querySelectorAll('.check-item');
+    const btn = document.getElementById('tg-btn');
+    checks.forEach(c => c.addEventListener('change', () => {
+      const allChecked = Array.from(checks).every(i => i.checked);
+      if (allChecked) {
+        updateTelegramLink();
+        btn.classList.remove('bg-slate-900/90', 'text-slate-500', 'pointer-events-none', 'border-white/10');
+        btn.classList.add('bg-sky-400', 'text-black', 'hover:bg-sky-300', 'border-sky-400', 'shadow-lg');
+        btn.textContent = '>>> ОТКРЫТЬ ДИАЛОГ В TELEGRAM С ГОТОВЫМ ПРОТОКОЛОМ <<<';
+      } else {
+        btn.classList.add('bg-slate-900/90', 'text-slate-500', 'pointer-events-none', 'border-white/10');
+        btn.classList.remove('bg-sky-400', 'text-black', 'hover:bg-sky-300', 'border-sky-400', 'shadow-lg');
+        btn.textContent = '[ ПОДТВЕРДИ ВСЕ 4 ПУНКТА ВЫШЕ ДЛЯ РАЗБЛОКИРОВКИ TELEGRAM ]';
+      }
+    }));
+
+    updateTelegramLink();
+
+    // АНИМАЦИЯ КОСМОСА, СОЗВЕЗДИЙ И ПАДАЮЩИХ ЗВЕЗД
+    const canvas = document.getElementById('cosmos-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    let stars = [];
+    let meteors = [];
+    let mouse = { x: null, y: null };
+
+    function resize() {
+      width = canvas.width = window.innerWidth;
+      height = canvas.height = window.innerHeight;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
+    });
+
+    const STAR_COUNT = Math.min(100, Math.floor((window.innerWidth * window.innerHeight) / 13000));
+    for (let i = 0; i < STAR_COUNT; i++) {
+      stars.push({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.3,
+        vy: (Math.random() - 0.5) * 0.3,
+        radius: Math.random() * 1.5 + 0.5,
+        alpha: Math.random() * 0.6 + 0.3
+      });
+    }
+
+    function spawnMeteor() {
+      if (Math.random() < 0.015 && meteors.length < 2) {
+        meteors.push({
+          x: Math.random() * width,
+          y: 0,
+          len: Math.random() * 80 + 40,
+          speed: Math.random() * 9 + 7,
+          alpha: 1
+        });
+      }
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < stars.length; i++) {
+        let s = stars[i];
+        s.x += s.vx;
+        s.y += s.vy;
+
+        if (s.x < 0 || s.x > width) s.vx *= -1;
+        if (s.y < 0 || s.y > height) s.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(s.x, s.y, s.radius, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(186, 230, 253, ${s.alpha})`;
+        ctx.fill();
+
+        for (let j = i + 1; j < stars.length; j++) {
+          let s2 = stars[j];
+          let dist = Math.hypot(s.x - s2.x, s.y - s2.y);
+          if (dist < 125) {
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(s2.x, s2.y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - dist / 125) * 0.16})`;
+            ctx.lineWidth = 0.6;
+            ctx.stroke();
+          }
+        }
+
+        if (mouse.x && mouse.y) {
+          let mDist = Math.hypot(s.x - mouse.x, s.y - mouse.y);
+          if (mDist < 160) {
+            ctx.beginPath();
+            ctx.moveTo(s.x, s.y);
+            ctx.lineTo(mouse.x, mouse.y);
+            ctx.strokeStyle = `rgba(56, 189, 248, ${(1 - mDist / 160) * 0.35})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      spawnMeteor();
+      for (let i = meteors.length - 1; i >= 0; i--) {
+        let m = meteors[i];
+        ctx.beginPath();
+        ctx.moveTo(m.x, m.y);
+        ctx.lineTo(m.x - m.len, m.y + m.len);
+        let grad = ctx.createLinearGradient(m.x, m.y, m.x - m.len, m.y + m.len);
+        grad.addColorStop(0, `rgba(255, 255, 255, ${m.alpha})`);
+        grad.addColorStop(1, 'rgba(56, 189, 248, 0)');
+        ctx.strokeStyle = grad;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        m.x += m.speed;
+        m.y += m.speed;
+        m.alpha -= 0.02;
+        if (m.alpha <= 0 || m.y > height || m.x > width) {
+          meteors.splice(i, 1);
+        }
+      }
+
+      requestAnimationFrame(animate);
+    }
+    animate();
+  </script>
+</body>
+</html>
